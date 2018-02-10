@@ -1,10 +1,10 @@
 -cp src
 # -D analyzer-optimize
--main Main
+-main MakeVmf
 -cpp bin.cpp
 -debug
 
 -lib arguable
 -lib hxparse
 
--cmd .\build.cpp\Main-debug.exe --in test1.map
+#-cmd .\bin.cpp\MakeVmf-debug.exe --in tests/test4.map

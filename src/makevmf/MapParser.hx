@@ -126,6 +126,8 @@ class MapParser
 		};
 	}
 
+	public function isEof() return token == TEof;
+
 	public function entity() : makevmf.MapEntity
 	{
 		var ent = new makevmf.MapEntity();
