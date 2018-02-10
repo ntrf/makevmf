@@ -15,9 +15,10 @@ class MakeVmf
 
 		if (input == null) {
 			Sys.stderr().writeString("Usage:\n  makevmf --in <inputfile> [--out <output file>]");
+			Sys.stderr().writeString("\n\nConverts Q3 .map files into HL2 .vmf files");
 			Sys.stderr().writeString("\n\nVersion 0.4");
 			Sys.stderr().writeString("\n(C) Nesterov A., 2018");
-			Sys.stderr().writeString("\nConverts Q3 .map files into HL2 .vmf files");
+			Sys.stderr().writeString("\n");
 			Sys.exit(1);
 		}
 

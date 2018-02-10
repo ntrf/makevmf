@@ -1,0 +1,8 @@
+-cp src
+-D analyzer-optimize
+-dce full
+-main MakeVmf
+-cpp bin.cpp-public
+
+-lib arguable
+-lib hxparse
