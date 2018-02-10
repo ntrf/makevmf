@@ -1,0 +1,10 @@
+-cp src
+# -D analyzer-optimize
+-main Main
+-cpp bin.cpp
+-debug
+
+-lib arguable
+-lib hxparse
+
+-cmd .\build.cpp\Main-debug.exe --in test1.map
