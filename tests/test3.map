@@ -1,0 +1,12 @@
+{
+"classname" "worldspawn"
+// brush 0
+{
+( 128 128 0 ) ( 0 128 0 ) ( 0 0 0 ) gothic_block/blocks15_blue 0 0 0 -0.500000 0.500000 0 0 0
+( 0 0 128 ) ( 0 128 128 ) ( 128 128 128 ) gothic_block/blocks11bbroke3 0 0 0 -0.500000 0.500000 0 0 0
+( 0 0 160 ) ( 128 0 160 ) ( 128 0 -16 ) gothic_block/blocks15_blue 0 0 0 -0.500000 0.500000 0 0 0
+( 128 0 160 ) ( 128 128 160 ) ( 128 128 -16 ) gothic_block/blocks15_blue 44 -88 30 -0.500000 0.500000 0 0 0
+( 128 128 160 ) ( 0 128 160 ) ( 0 128 -16 ) gothic_block/blocks15_blue 64 -64 0 1 1 0 0 0
+( 0 128 160 ) ( 0 0 160 ) ( 0 0 -16 ) gothic_block/blocks15_blue 0 0 0 -0.500000 0.500000 0 0 0
+}
+}
