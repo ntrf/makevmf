@@ -13,6 +13,7 @@
 */
 package ;
 
+import makevmf.MapEntity;
 import arguable.ArgParser;
 
 import makevmf.VmfWriter;
@@ -49,14 +50,34 @@ class MakeVmf
 		}
 
 		var parser = new makevmf.MapParser(infile);
+
+		var worldspawn = null;
+		var entities : Array< MapEntity > = [];
 		
-		var ent = parser.entity();
+		while (true) {
+			if (parser.isEof())
+				break;
+			
+			var ent = parser.entity();
+
+			if (ent.classname == "worldspawn") {
+				if (worldspawn != null)
+					Sys.stderr().writeString("Warning: more than one 'worldspawn' in one map. Only first one is preserved.\n -- send me a sample --");
+				else
+					worldspawn = ent;
+			} else {
+				entities.push(ent);
+			}
+		}
 
 		var outputFile = sys.io.File.write(outFilename, false);
-		
+
 		var writer = new VmfWriter(outputFile);
 		writer.writeHeader();
-		writer.writeWorld(ent);
+		writer.writeWorld(worldspawn);
+		for (e in entities) {
+			writer.writeEntity(e);
+		}
 		writer.writeFooter();
 
 		outputFile.close();

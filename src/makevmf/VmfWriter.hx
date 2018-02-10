@@ -20,6 +20,7 @@ class VmfWriter
 	var output : haxe.io.Output;
 
 	var genid = 0;
+	var sideid = 0;
 
 	static inline var cFileHeader =
 		"versioninfo\n"+
@@ -53,7 +54,7 @@ class VmfWriter
 		output.writeString(cFileHeader);
 	}
 
-	function writeProperies(ent : makevmf.MapEntity)
+	function writeProperies(ent : MapEntity)
 	{
 		var keys = ent.properties.keys();
 		for (k in keys) {
@@ -61,18 +62,46 @@ class VmfWriter
 		}
 	}
 
-	public function writeWorld(worldspan : makevmf.MapEntity)
+	public function writeWorld(worldspan : MapEntity)
 	{
 		output.writeString("world\n{\n");
 		output.writeString('\t"id" "1"\n');
 		output.writeString('\t"mapversion" "1"\n');
 		output.writeString('\t"skyname" "sky_wasteland02"\n');
-		output.writeString('\t"class" "worldspan"\n');
+		output.writeString('\t"classname" "worldspan"\n');
 		writeProperies(worldspan);
 
 		for (br in worldspan.brushes) {
 			writeBrush(br);
 		}
+
+		output.writeString("}\n");
+	}
+
+	function writeEditorBlock(ind : String)
+	{
+		var cg = Std.random(64) + 127;
+		var cb = Std.random(64) + 127;
+
+		output.writeString('${ind}editor\n\t\t{\n');
+        output.writeString('${ind}\t"color" "0 $cg $cb"\n');
+		output.writeString('${ind}\t"visgroupshown" "1"\n');
+        output.writeString('${ind}\t"visgroupautoshown" "1"\n');
+//		output.writeString('${ind}\t"parentid" "$id"\n');
+        output.writeString('${ind}}\n');
+	}
+
+	public function writeEntity(ent : MapEntity)
+	{
+		var id = ++genid;
+
+		output.writeString("entity\n{\n");
+		output.writeString('\t"id" "$id"\n');
+
+		output.writeString('\t"classname" "${ent.classname}"\n');
+		writeProperies(ent);
+
+		writeEditorBlock("\t");
 
 		output.writeString("}\n");
 	}
@@ -84,7 +113,7 @@ class VmfWriter
 		output.writeString('\t\t"id" "$id"\n');
 
 		for (side in br.sides) {
-			var sid = ++genid;
+			var sid = ++sideid;
 
 			var texname = "effect/combinedisplay_core_";
 
@@ -101,15 +130,7 @@ class VmfWriter
 			output.writeString('\t\t}\n');
 		}
 
-		var cg = Std.random(64) + 127;
-		var cb = Std.random(64) + 127;
-
-		output.writeString('\t\teditor\n\t\t{\n');
-        output.writeString('\t\t\t"color" "0 $cg $cb"\n');
-		output.writeString('\t\t\t"visgroupshown" "1"\n');
-        output.writeString('\t\t\t"visgroupautoshown" "1"\n');
-//		output.writeString('\t\t\t"parentid" "$id"\n');
-        output.writeString('\t\t}\n');
+		writeEditorBlock("\t\t");
 
 		output.writeString("\t}\n");
 	}
