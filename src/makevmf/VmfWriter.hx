@@ -62,16 +62,16 @@ class VmfWriter
 		}
 	}
 
-	public function writeWorld(worldspan : MapEntity)
+	public function writeWorld(worldspawn : MapEntity)
 	{
 		output.writeString("world\n{\n");
 		output.writeString('\t"id" "1"\n');
 		output.writeString('\t"mapversion" "1"\n');
 		output.writeString('\t"skyname" "sky_wasteland02"\n');
 		output.writeString('\t"classname" "worldspan"\n');
-		writeProperies(worldspan);
+		writeProperies(worldspawn);
 
-		for (br in worldspan.brushes) {
+		for (br in worldspawn.brushes) {
 			writeBrush(br);
 		}
 
@@ -100,6 +100,13 @@ class VmfWriter
 
 		output.writeString('\t"classname" "${ent.classname}"\n');
 		writeProperies(ent);
+
+		// add support for brush entities
+		if (ent.brushes != null) {
+			for (br in ent.brushes) {
+				writeBrush(br);
+			}
+		}
 
 		writeEditorBlock("\t");
 
