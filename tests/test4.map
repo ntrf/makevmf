@@ -93,12 +93,25 @@
 }
 // entity 1
 {
-"origin" "192 0 64"
-"light" "300"
-"classname" "light"
+"classname" "trigger_hurt"
+// brush 0
+{
+( 320 40 0 ) ( 312 40 0 ) ( 312 -24 0 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+( 312 -24 64 ) ( 312 40 64 ) ( 320 40 64 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+( 312 -64 8 ) ( 320 -64 8 ) ( 320 -64 0 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+( 320 -24 8 ) ( 320 40 8 ) ( 320 40 0 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+( 320 64 8 ) ( 312 64 8 ) ( 312 64 0 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+( 304 40 8 ) ( 304 -24 8 ) ( 304 -24 0 ) common/trigger 0 0 0 0.500000 0.500000 0 0 0
+}
 }
 // entity 2
 {
-"classname" "info_player_start"
+"classname" "light"
+"light" "300"
+"origin" "192 0 64"
+}
+// entity 3
+{
 "origin" "64 0 0"
+"classname" "info_player_start"
 }
